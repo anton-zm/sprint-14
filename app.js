@@ -19,9 +19,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use('/cards', cardsRoute);
+app.use('/cards', auth, cardsRoute);
 
-app.use('/users', usersRoute);
+app.use('/users', auth, usersRoute);
 app.post('/signin', login);
 app.post('/signup', createUser);
 
