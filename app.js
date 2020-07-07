@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cardsRoute = require('./routes/cards');
 const usersRoute = require('./routes/users');
 const { login, createUser } = require('./controllers/users');
+const auth = require('./middlewares/auth');
 
 const { PORT = 3000 } = process.env;
 
