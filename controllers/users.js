@@ -1,5 +1,6 @@
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const user = require('../models/user');
 
 module.exports.getUsers = (req, res) => {
@@ -31,4 +32,17 @@ module.exports.getUser = async (req, res) => {
   } catch (err) {
     return res.status(404).send({ message: 'Пользователь не найден' });
   }
+};
+
+module.exports.login = (req, res) => {
+  const { email, password } = req.body;
+  return user
+    .findUserByCredentials(email, password)
+    .then((userObj) => {
+      const token = jwt.sign({ _id: userObj._id });
+      res.send({ token });
+    })
+    .catch((err) => {
+      res.status(401).send({ message: err.message });
+    });
 };
