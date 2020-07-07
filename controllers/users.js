@@ -1,3 +1,4 @@
+const validator = require('validator');
 const user = require('../models/user');
 
 module.exports.getUsers = (req, res) => {
