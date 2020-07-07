@@ -16,7 +16,13 @@ module.exports.createUser = (req, res) => {
   if (validator.isEmail(email)) {
     bcrypt.hash(password, 10).then((hash) => {
       user
-        .create({ name, about, avatar, email, password: hash })
+        .create({
+          name,
+          about,
+          avatar,
+          email,
+          password: hash,
+        })
         .then((users) => res.send({ data: users }))
         .catch((err) => res.status(500).send({ message: err }));
     });

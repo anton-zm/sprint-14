@@ -19,11 +19,13 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use('/cards', auth, cardsRoute);
-
-app.use('/users', auth, usersRoute);
 app.post('/signin', login);
 app.post('/signup', createUser);
+
+app.use(auth);
+
+app.use('/cards', cardsRoute);
+app.use('/users', usersRoute);
 
 app.use('*', (req, res) => {
   res.status(404).send({
