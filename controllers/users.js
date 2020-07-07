@@ -39,7 +39,7 @@ module.exports.login = (req, res) => {
   return user
     .findUserByCredentials(email, password)
     .then((userObj) => {
-      const token = jwt.sign({ _id: userObj._id });
+      const token = jwt.sign({ _id: userObj._id }, 'secret-key');
       res.send({ token });
     })
     .catch((err) => {
