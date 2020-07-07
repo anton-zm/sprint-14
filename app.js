@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cardsRoute = require('./routes/cards');
 const usersRoute = require('./routes/users');
+const { login, createUser } = require('./controllers/users');
 
 const { PORT = 3000 } = process.env;
 
@@ -27,6 +28,8 @@ app.use((req, res, next) => {
 app.use('/cards', cardsRoute);
 
 app.use('/users', usersRoute);
+app.post('/signin', login);
+app.post('/signup', createUser);
 
 app.use('*', (req, res) => {
   res.status(404).send({
