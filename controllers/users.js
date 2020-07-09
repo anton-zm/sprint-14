@@ -43,13 +43,16 @@ module.exports.getUser = async (req, res) => {
 
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
-  return user
-    .findUserByCredentials(email, password)
-    .then((userObj) => {
-      const token = jwt.sign({ _id: userObj._id }, 'secret-key', { expiresIn: '7d' });
-      res.send({ token });
-    })
-    .catch((err) => {
-      res.status(401).send({ message: err.message });
-    });
+  if (password) {
+    return user
+      .findUserByCredentials(email, password)
+      .then((userObj) => {
+        const token = jwt.sign({ _id: userObj._id }, 'secret-key', { expiresIn: '7d' });
+        res.send({ token });
+      })
+      .catch((err) => {
+        res.status(401).send({ message: err.message });
+      });
+  }
+  return res.status(400).send({ message: 'Необходимо ввести пароль' });
 };
