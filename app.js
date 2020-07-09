@@ -33,4 +33,6 @@ app.use('*', (req, res) => {
   });
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Приложение запущено на port:${PORT}`);
+});
