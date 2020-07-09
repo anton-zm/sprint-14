@@ -24,7 +24,13 @@ module.exports.createUser = (req, res) => {
           password: hash,
         })
         .then((users) => res.send({ data: users }))
-        .catch((err) => res.status(500).send({ message: err }));
+        .catch((err) => {
+          if (err.name === 'ValidationError') {
+            res.status(400).send({ message: err });
+          } else {
+            res.status(500).send({ message: err });
+          }
+        });
     });
   } else {
     res.status(400).send({ message: 'Проверьте введенные данные' });
