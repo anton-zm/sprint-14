@@ -1,5 +1,5 @@
 {
-  "name": "sprint13",
+  "name": "sprint14",
   "version": "1.0.0",
   "description": "Яндекс.Практикум  Самостоятельная работа",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/anton-zm/sprint13.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Anton Zmanovskii",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/anton-zm/sprint13/issues"
