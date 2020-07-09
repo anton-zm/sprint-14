@@ -24,7 +24,7 @@ module.exports.createUser = (req, res) => {
         email,
         password: hash,
       })
-      .then((users) => res.send({ data: users }))
+      .then((users) => res.send({ data: { name: users.name, about: users.about, avatar: users.avatar, email: users.email } })) // eslint-disable-line
       .catch((err) => {
         if (err.name === 'ValidationError') {
           res.status(400).send({ message: err });
